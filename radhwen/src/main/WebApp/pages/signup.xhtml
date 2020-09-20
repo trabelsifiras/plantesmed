@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		>
+	<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>Adda - Social Network HTML Template</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets1/images/favicon.ico"/>
+
+    <!-- CSS
+	============================================ -->
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets1/css/vendor/bootstrap.min.css"/>
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="assets1/css/vendor/bicon.min.css"/>
+    <!-- Flat Icon CSS -->
+    <link rel="stylesheet" href="assets1/css/vendor/flaticon.css"/>
+    <!-- audio & video player CSS -->
+    <link rel="stylesheet" href="assets1/css/plugins/plyr.css"/>
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="assets1/css/plugins/slick.min.css"/>
+    <!-- nice-select CSS -->
+    <link rel="stylesheet" href="assets1/css/plugins/nice-select.css"/>
+    <!-- perfect scrollbar css -->
+    <link rel="stylesheet" href="assets1/css/plugins/perfect-scrollbar.css"/>
+    <!-- light gallery css -->
+    <link rel="stylesheet" href="assets1/css/plugins/lightgallery.min.css"/>
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="assets1/css/style.css"/>
+
+</head>
+		
+ <main>
+  	<div class="main-wrapper pb-0 mb-0">
+            <div class="timeline-wrapper">
+                <div class="timeline-header">
+                    <div class="container-fluid p-0">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-lg-6">
+                                <div class="timeline-logo-area d-flex align-items-center">
+                                    <div class="timeline-logo">
+                                        <a href="index.html">
+                                            <img src="assets1/images/logo/logo.png" alt="timeline logo"/>
+                                        </a>
+                                    </div>
+                                    <div class="timeline-tagline">
+                                        <h6 class="tagline">It’s helps you to connect and share with the people in your life</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                            <h:form>
+                                <div class="login-area">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-sm">
+                                            <h:inputText type="text" value="#{login.email}" placeholder="Email or Userame" class="single-field"/>
+                                        </div>
+                                        <div class="col-12 col-sm">
+                                            <h:inputSecret type="password" value="#{login.password}" placeholder="Password" class="single-field"/>
+                                        </div>
+                                        <div class="col-12 col-sm-auto">
+                                            <h:commandLink action="#{login.login()}"><button  class="login-btn" >Login</button></h:commandLink>
+                                        </div>
+                                    </div>
+                                </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-page-wrapper">
+                    <div class="container-fluid p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6 order-2 order-lg-1">
+                                <div class="timeline-bg-content bg-img" data-bg="assets1/images/timeline/adda-timeline.jpg" style="background-image: url(&quot;assets1/images/timeline/adda-timeline.jpg&quot;);">
+                                    <h3 class="timeline-bg-title">Let’s see what’s happening to you and your world. Welcome in Adda.</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 d-flex align-items-center justify-content-center">
+                                <div class="signup-form-wrapper">
+                                    <h1 class="create-acc text-center">Create An Account</h1>
+                                    <div class="signup-inner text-center">
+                                        <h3 class="title">Wellcome to Adda</h3>
+                                        <form class="signup-inner--form" method="POST" action="/SpringMVC/servlet/upload1"
+										enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <input type="email" class="single-field" placeholder="Email" name="email"/>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="single-field" placeholder="First Name" name="firstname"/>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="single-field" placeholder="Last Name" name="lastname"/>
+                                                </div>
+                                                <div class="col-12">
+                                                    <input type="password" class="single-field" placeholder="Password" name="password"/>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    
+                                                   <input type="file" name="file" />
+                                                </div>
+                                                
+                                                <div class="col-12">
+                                                    <input type="submit" class="submit-btn" value="submit"/>
+                                                </div>
+                                            </div>
+                                            <h6 class="terms-condition">I have read &amp; accepted the <a href="#">terms of use</a></h6>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ </main>
+
+
+   <!-- JS
+============================================ -->
+
+    <!-- Modernizer JS -->
+    <script src="assets1/js/vendor/modernizr-3.6.0.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="assets1/js/vendor/jquery-3.3.1.min.js"></script>
+    <!-- Popper JS -->
+    <script src="assets1/js/vendor/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets1/js/vendor/bootstrap.min.js"></script>
+    <!-- Slick Slider JS -->
+    <script src="assets1/js/plugins/slick.min.js"></script>
+    <!-- nice select JS -->
+    <script src="assets1/js/plugins/nice-select.min.js"></script>
+    <!-- audio video player JS -->
+    <script src="assets1/js/plugins/plyr.min.js"></script>
+    <!-- perfect scrollbar js -->
+    <script src="assets1/js/plugins/perfect-scrollbar.min.js"></script>
+    <!-- light gallery js -->
+    <script src="assets1/js/plugins/lightgallery-all.min.js"></script>
+    <!-- image loaded js -->
+    <script src="assets1/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <!-- isotope filter js -->
+    <script src="assets1/js/plugins/isotope.pkgd.min.js"></script>
+    <!-- Main JS -->
+    <script src="assets1/js/main.js"></script>
+  
+        
+
+</ui:composition>
+</h:body>
+</html>
+
