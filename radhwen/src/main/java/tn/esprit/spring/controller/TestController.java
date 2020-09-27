@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -19,9 +20,12 @@ import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 import org.aspectj.weaver.Utils;
@@ -49,11 +53,11 @@ import tn.esprit.spring.services.PlanteService;
 
 @Controller(value = "chart")
 @ELBeanName(value = "chart")
-@Join(path = "/chartanalyse1", to = "/pages/test.jsf")
-@Named
-@RequestScoped
-@ManagedBean
-public class TestController {
+@Join(path = "/chartanalyse1", to = "/secured/test.jsf")
+
+public class TestController implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 
 	 @Autowired
 	 PlanteService ps;
@@ -61,9 +65,11 @@ public class TestController {
 	 private Membre mementity;
 	@Autowired
 	 PlanteRepository pr;
+	
+
 	   private String description ;			
 		private String photos ;
-		
+		private String com;
 		 private Integer rating3;   
 
 		private Part uploadedFile;
@@ -85,7 +91,13 @@ public class TestController {
 	
 			
 		}
+	/*public void addcom(int idplante){
+	int	id=LoginController.
 		
+		ps.addcomentaire(id,idplante,com);
+		
+		
+	}	*/
 		private static String UPLOADED_FOLDER = System.getProperty("user.dir")+"/src/main/WebApp/uploads";
 
 	    @GetMapping("/")
@@ -137,7 +149,9 @@ public class TestController {
 	    }
 	    
 	    public List<Plante> getall(){
-			return pr.findAll();
+	
+	    	return pr.findAll();
+
 	    	
 	    	
 	    }
@@ -196,6 +210,38 @@ public class TestController {
 		        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cancel Event", "Rate Reset");
 		        FacesContext.getCurrentInstance().addMessage(null, message);
 		    }
+
+			public PlanteRepository getPr() {
+				return pr;
+			}
+
+			public void setPr(PlanteRepository pr) {
+				this.pr = pr;
+			}
+
+			public String getCom() {
+				return com;
+			}
+
+			public void setCom(String com) {
+				this.com = com;
+			}
+
+			public Integer getRating3() {
+				return rating3;
+			}
+
+			public void setRating3(Integer rating3) {
+				this.rating3 = rating3;
+			}
+
+			public static String getUPLOADED_FOLDER() {
+				return UPLOADED_FOLDER;
+			}
+
+			public static void setUPLOADED_FOLDER(String uPLOADED_FOLDER) {
+				UPLOADED_FOLDER = uPLOADED_FOLDER;
+			}
 		
 	
 	

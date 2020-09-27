@@ -7,7 +7,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:xlink="http://www.w3.org/1999/xlink">
 
+
 <head>
+ 
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>Adda - Social Network HTML Template</title>
@@ -45,6 +47,16 @@
 <link rel="stylesheet" href="assets1/css/style.css" />
 
 </head>
+  
+    <h:head>
+
+				<title>prevent</title>
+				
+
+
+    <f:event listener="#{util.verifsesion()}" type="preRenderView" ></f:event>
+
+			</h:head>
 <h:body>
 
 

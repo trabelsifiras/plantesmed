@@ -5,8 +5,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
 
+				<title>prevent</title>
+				
+
+  <f:metadata>
+    <f:event listener="#{login.isLoggedInForwardHome()}" type="preRenderView" ></f:event>
+  </f:metadata>
+			</h:head>
 <h:body>
 
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -17,8 +26,7 @@
 
 		<ui:define name="content">
 		
-		
-			<h:head>
+
 			<style>
 		.share-text-box .share-text-field {
     width: 100%;
@@ -34,19 +42,14 @@
     box-shadow: inset 0px 1px 10px 0px rgba(85, 85, 85, 0.2);
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;}
-    
+    transition: all 0.4s ease; }
+    </style>
     <h:head>
 
-				<title>prevent</title>
+				<title>Rating</title>
 				
-
-  <f:metadata>
-    <f:event listener="#{login.isLoggedInForwardHome()}" type="preRenderView" ></f:event>
-  </f:metadata>
-			</h:head>
-    </style>
-			<title>Rating</title>
+  <title>Login</title>
+  
 			</h:head>
 			<div class="main-wrapper pt-80">
 				<div class="container">
@@ -430,8 +433,8 @@
 
                                 <!-- share content box start -->
                                 <div class="share-content-box w-100">
-                                     <h:inputText type="text" value="" class="share-text-field"  />
-                                        <h:commandLink class="btn-share" action ="" type="submit">add comment</h:commandLink>
+                                     <h:inputText type="text" value="#{chart.com}" class="share-text-field"  />
+                                        <h:commandLink class="btn-share" action ="#{chart.addcom(plante.id)}" type="submit">add comment</h:commandLink>
                                 </div>
                                 <!-- share content box end -->
                                 <!-- Modal start -->

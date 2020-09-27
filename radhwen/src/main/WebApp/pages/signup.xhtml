@@ -47,8 +47,10 @@
     <link rel="stylesheet" href="assets1/css/style.css"/>
 
 </head>
+ 
 		
  <main>
+
   	<div class="main-wrapper pb-0 mb-0">
             <div class="timeline-wrapper">
                 <div class="timeline-header">
@@ -68,17 +70,17 @@
                             </div>
                             
                             <div class="col-lg-6">
-                            <h:form>
+                            <h:form >
                                 <div class="login-area">
                                     <div class="row align-items-center">
                                         <div class="col-12 col-sm">
-                                            <h:inputText type="text" value="#{login.email}" placeholder="Email or Userame" class="single-field"/>
+                                            <h:inputText type="email" value="#{login.email}" placeholder="Email or Userame" class="single-field"/>
                                         </div>
                                         <div class="col-12 col-sm">
-                                            <h:inputSecret type="password" value="#{login.password}" placeholder="Password" class="single-field"/>
+                                            <h:inputText type="password" value="#{login.password}" placeholder="Password" class="single-field"/>
                                         </div>
                                         <div class="col-12 col-sm-auto">
-                                            <h:commandLink action="#{login.login()}"><button  class="login-btn" >Login</button></h:commandLink>
+                                            <h:commandButton action="#{login.login()}" class="login-btn" value="Login now"/>
                                         </div>
                                     </div>
                                 </div>
