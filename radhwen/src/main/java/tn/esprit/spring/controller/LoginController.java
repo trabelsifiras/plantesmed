@@ -223,6 +223,7 @@ private static String UPLOADED_FOLDER = System.getProperty("user.dir")+"/src/mai
 				  session = (HttpSession) context.getExternalContext().getSession(true);
 				  session.setAttribute("id", mb.getId());
 				  session.setAttribute("username", mb.getMail());
+				  session.setAttribute("photo", mb.getImage());
 				System.out.println(session.getAttribute("id"));
 
 		

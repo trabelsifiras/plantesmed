@@ -39,12 +39,17 @@ import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import tn.esprit.spring.entities.Commentaire;
 
 import tn.esprit.spring.entities.Membre;
 import tn.esprit.spring.entities.Plante;
@@ -65,7 +70,7 @@ public class TestController implements Serializable {
 	 private Membre mementity;
 	@Autowired
 	 PlanteRepository pr;
-	
+	private int idplant;
 
 	   private String description ;			
 		private String photos ;
@@ -91,13 +96,13 @@ public class TestController implements Serializable {
 	
 			
 		}
-	/*public void addcom(int idplante){
-	int	id=LoginController.
+	public void addcom(int idplante,int	id){
+	
 		
 		ps.addcomentaire(id,idplante,com);
 		
 		
-	}	*/
+	}	
 		private static String UPLOADED_FOLDER = System.getProperty("user.dir")+"/src/main/WebApp/uploads";
 
 	    @GetMapping("/")
@@ -152,9 +157,36 @@ public class TestController implements Serializable {
 	
 	    	return pr.findAll();
 
+	    }
+	    
+	    public String navigatetopagebyplantid(int plant){
+			
+			this.idplant=plant;
+			this.plentity=pr.findById(plant).get();
+			
+			return "/pages/commentedplant.xhtml?faces-redirect=false";
+		
+		}
+	    public List<Commentaire> getcommentsbplant(Plante plant){
+			
 	    	
+	    	return (List<Commentaire>) plant.getComments();
 	    	
 	    }
+	    
+	    @GetMapping(value = "/affecterEmployeADepartement/{idemp}")
+		@ResponseBody
+	    public List<Commentaire> medrecshowall(@PathVariable("idemp") int childId) {
+			Plante pl;
+			pl=pr.findById(childId).get();
+			return (List<Commentaire>) (pl.getComments());
+			
+			
+		}
+	    
+	    
+	    
+	    
 		public PlanteService getPs() {
 			return ps;
 		}
@@ -241,6 +273,14 @@ public class TestController implements Serializable {
 
 			public static void setUPLOADED_FOLDER(String uPLOADED_FOLDER) {
 				UPLOADED_FOLDER = uPLOADED_FOLDER;
+			}
+
+			public int getIdplant() {
+				return idplant;
+			}
+
+			public void setIdplant(int idplant) {
+				this.idplant = idplant;
 			}
 		
 	

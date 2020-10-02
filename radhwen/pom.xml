@@ -12,6 +12,7 @@
 	<artifactId>radhwen</artifactId>
 	<version>1.0</version>
 	<name>radhwen</name>
+	<packaging>war</packaging>
 	<description>spring-boot</description>
 
 	<properties>
