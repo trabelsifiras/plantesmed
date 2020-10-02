@@ -5,8 +5,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
 
+				<title>prevent</title>
+				
+
+  <f:metadata>
+    <f:event listener="#{login.isLoggedInForwardHome()}" type="preRenderView" ></f:event>
+  </f:metadata>
+			</h:head>
 <h:body>
 
 	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -17,8 +26,7 @@
 
 		<ui:define name="content">
 		
-		
-			<h:head>
+
 			<style>
 		.share-text-box .share-text-field {
     width: 100%;
@@ -34,19 +42,14 @@
     box-shadow: inset 0px 1px 10px 0px rgba(85, 85, 85, 0.2);
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;}
-    
+    transition: all 0.4s ease; }
+    </style>
     <h:head>
 
-				<title>prevent</title>
+				<title>Rating</title>
 				
-
-  <f:metadata>
-    <f:event listener="#{login.isLoggedInForwardHome()}" type="preRenderView" ></f:event>
-  </f:metadata>
-			</h:head>
-    </style>
-			<title>Rating</title>
+  <title>Login</title>
+  
 			</h:head>
 			<div class="main-wrapper pt-80">
 				<div class="container">
@@ -59,7 +62,7 @@
 										href="profile.html"> <img src=""
 										alt="" />
 									</a> <a href="profile.html" class="profile-thumb-2"> <img
-										src="" alt="" />
+										src="http://localhost:8082/SpringMVC/uploads/#{sessionScope['username']}" alt="" />
 									</a> </figure>
 									<div class="profile-desc text-center">
 										<h6 class="author">
@@ -258,81 +261,15 @@
 									</ul>
 								</div>
 							</div>
-							<!-- widget single item end --> </aside>
+						</aside>
 						</div>
 
 						<div class="col-lg-6 order-1 order-lg-2">
 
-							<!-- share box start -->
-							<div class="card card-small">
-								<div class="share-box-inner">
-									<!-- profile picture end -->
-									<div class="profile-thumb">
-										<a href="#"> <figure class="profile-thumb-middle">
-											<img src="assets1/images/profile/profile-small-37.jpg"
-												alt="profile picture" /> </figure>
-										</a>
-									</div>
-									<!-- profile picture end -->
-
-									<!-- share content box start -->
-									<div class="share-content-box w-100">
-										<form class="share-text-box">
-											<textarea name="share" class="share-text-field"
-												aria-disabled="true" placeholder="Say Something"
-												data-toggle="modal" data-target="#textbox" id="email"></textarea>
-											<button class="btn-share" type="submit">share</button>
-										</form>
-									</div>
-									<!-- share content box end -->
-									<form method="POST" action="/SpringMVC/servlet/upload"
-										enctype="multipart/form-data">
-										<!-- Modal start -->
-										<div class="modal fade" id="textbox" aria-labelledby="textbox">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title">Share Your Mood</h5>
-														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">×</span>
-														</button>
-													</div>
-
-
-													<div class="modal-body custom-scroll ps">
-														<textarea name="description"
-															class="share-field-big custom-scroll ps"
-															placeholder="Say Something"></textarea>
-														<div class="ps__rail-x" style="left: 0px; bottom: 3px;">
-															<div class="ps__thumb-x" tabindex="0"
-																style="left: 0px; width: 0px;"></div>
-														</div>
-														<div class="ps__rail-y" style="top: 0px; right: 2px;">
-															<div class="ps__thumb-y" tabindex="0"
-																style="top: 0px; height: 0px;"></div>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<input type="file" name="file" />
-														<button type="button" class="post-share-btn"
-															data-dismiss="modal">cancel</button>
-														<input type="submit" class="post-share-btn" />post
-													</div>
-
-
-												</div>
-											</div>
-										</div>
-									</form>
-									<!-- Modal end -->
-								</div>
-							</div>
-							<!-- share box end -->
 							<h:form class="share-text-box">
 								<!-- post status start -->
 
-								<ui:repeat var="plante" value="#{chart.getall()}">
+								
 									<p:growl id="messages" showDetail="true" />
 									<div class="card">
 										<!-- post title start -->
@@ -384,12 +321,12 @@
 													<h:outputText value="#{chart.rating3}" />
 												</h:panelGrid>
 											</p:dialog>
-											<p class="post-desc">#{plante.description}</p>
+											<p class="post-desc">#{chart.plentity.description}</p>
 
 											<div class="post-thumb-gallery">
 												<figure class="post-thumb img-popup"> <a
 													href="assets1/images/post/post-large-1.jpg"> <img
-													src="http://localhost:8081/SpringMVC/uploads/#{plante.photos}"
+													src="http://localhost:8082/SpringMVC/uploads/#{chart.plentity.photos}"
 													alt="post image" />
 												</a> </figure>
 											</div>
@@ -403,7 +340,6 @@
 													<li>
 														<button class="post-comment">
 															<i class="bi bi-chat-bubble"></i> <span>41</span>
-															
 														</button>
 													</li>
 													<li>
@@ -417,6 +353,35 @@
 											</div>
 
 										</div>
+										<ui:repeat var="comment" value="#{chart.plentity.getComments()}"  >
+									
+										<ul class="dropdown-msg-list">
+                                                <li class="msg-list-item d-flex justify-content-between">
+                                                    <!-- profile picture end -->
+                                                    <div class="profile-thumb">
+                                                        <figure class="profile-thumb-middle">
+                                                            <img src="assets/images/profile/profile-small-3.jpg" alt="profile picture"/>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- profile picture end -->
+
+                                                    <!-- message content start -->
+                                                    <div class="msg-content">
+                                                        <h6 class="author"><a href="profile.html">Mili Raoulin</a></h6>
+                                                        <p>#{comment.com}</p>
+                                                    </div>
+                                                    <!-- message content end -->
+
+                                                    <!-- message time start -->
+                                                    <div class="msg-time">
+                                                        <p>25 Apr 2019</p>
+                                                    </div>
+                                                    <!-- message time end -->
+                                                </li>
+                                                </ul>
+                                       
+										      </ui:repeat>   
+										
 										<div class="card card-small">
                             <div class="share-box-inner">
                                 <!-- profile picture end -->
@@ -431,8 +396,8 @@
 
                                 <!-- share content box start -->
                                 <div class="share-content-box w-100">
-                                     <h:inputText type="text" value="" class="share-text-field"  />
-                                        <h:commandLink class="btn-share" action ="" type="submit">add comment</h:commandLink>
+                                     <h:inputText type="text" value="#{chart.com}" class="share-text-field"  />
+                                        <h:commandLink class="btn-share" action ="#{chart.addcom(chart.plentity.id,sessionScope['id'])}" type="submit">add comment</h:commandLink>
                                 </div>
                                 <!-- share content box end -->
                                 <!-- Modal start -->
@@ -442,38 +407,10 @@
                         </div>
 									</div>
 									
-								</ui:repeat>
                                        
                                   
 							</h:form>
-							<!-- post status end -->
-
-							<!-- post status start -->
-
-							<!-- post status end -->
-
-							<!-- post status start -->
-
-							<!-- post status end -->
-
-							<!-- post status start -->
-
-							<!-- post status end -->
-
-							<!-- post status start -->
-
-							<!-- post status end -->
-
-							<!-- post status start -->
-
-							<!-- post status end -->
-
-
-							<!-- post status end -->
-
-							<!-- post status start -->
-
-							<!-- post status end -->
+						
 
 						</div>
 
